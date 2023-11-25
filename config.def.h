@@ -125,6 +125,8 @@ static const char *termcmd[]     = { "alacritty", NULL };
 static const char *calendar[]  = { "gsimplecal", NULL };
 static const char *taskmanager[]  = { "xfce4-taskmanager", NULL };
 //static const char *bookmark[]    = { "/home/suvratam/.config/dwm/BookmarkList", NULL };
+static const char *inc_bright[]    = { "/home/suvratam/.config/dwm/bright", "+", NULL };
+static const char *drec_bright[]    = { "/home/suvratam/.config/dwm/bright", "-", NULL };
 
 #include "selfrestart.c"
 #include "shiftview.c"
@@ -137,9 +139,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-        { MODKEY,                       XK_Right,  focusstack,     {.i = +1 } },
-        { MODKEY,                       XK_Left,   focusstack,     {.i = -1 } },
-        { MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
+    { MODKEY,                       XK_Right,  focusstack,     {.i = +1 } },
+    { MODKEY,                       XK_Left,   focusstack,     {.i = -1 } },
+    { MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
     { MODKEY,                       XK_o,      incnmaster,     {.i = -1 } },
 	
     { MODKEY|ShiftMask,             XK_Down,   setcfact,       {.f = +0.15 } },
@@ -193,6 +195,8 @@ static Key keys[] = {
 	{ MODKEY,		        		XK_Tab,    shiftview,	   {.i =  1 } },
 	{ MODKEY|ShiftMask,		        XK_Tab,	   shiftview,	   {.i = -1 } },
     { MODKEY,                       XK_h,      spawn,          SHCMD("xdotool type $(grep -v '^#' /home/suvratam/.local/share/bookmark | dmenu -i -l 50 | cut -d' ' -f1)") },
+    { MODKEY,                       XK_plus,   spawn,          {.v = inc_bright  } },
+    { MODKEY,                       XK_minus,  spawn,          {.v = drec_bright } },
 
 
 	TAGKEYS(                        XK_1,                      0)
