@@ -195,8 +195,8 @@ static Key keys[] = {
 	{ MODKEY,		        		XK_Tab,    shiftview,	   {.i =  1 } },
 	{ MODKEY|ShiftMask,		        XK_Tab,	   shiftview,	   {.i = -1 } },
     { MODKEY,                       XK_h,      spawn,          SHCMD("xdotool type $(grep -v '^#' /home/suvratam/.local/share/bookmark | dmenu -i -l 50 | cut -d' ' -f1)") },
-    { MODKEY,                       XK_plus,   spawn,          {.v = inc_bright  } },
-    { MODKEY,                       XK_minus,  spawn,          {.v = drec_bright } },
+    { ControlMask,                       XK_F3,     spawn,          {.v = inc_bright  } },
+    { ControlMask,                       XK_F2,     spawn,          {.v = drec_bright } },
 
 
 	TAGKEYS(                        XK_1,                      0)
