@@ -14,14 +14,14 @@ run "nm-applet"
 # run "variety"
 run "barrier"
 # run "xfce4-power-manager"
+rrun "numlockx on"
+run "volumeicon"
 run "blueman-applet"
 # run "blueberry-tray"
 # run "/usr/lib/xfce4/notifyd/xfce4-notifyd"
 # run "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
-picom --experimental-backends -b --config ~/.config/dwm/picom.conf &
-run "numlockx on"
-run "volumeicon"
 sxhkd -c ~/.config/dwm/sxhkd/sxhkdrc &
+picom --experimental-backends -b --config ~/.config/dwm/picom.conf &
 #xargs xwallpaper --stretch < ~/.config/dwm/Wallpaper &
 #run "picom"
 run ~/.config/slstatus/slstatus &
