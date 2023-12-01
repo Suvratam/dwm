@@ -39,8 +39,7 @@ super + F8
     reboot
 
 #Evolution
-super + F9
-    rofi -show run
+#super + F9
 
 #Spotify
 #super + F10
@@ -51,8 +50,7 @@ super + F9
 #   rofi -show run -fullscreen
 
 #Rofi
-   F12
-    rofi -show run
+#   F12
 
 #################################################################
 # SUPER + ... KEYS
