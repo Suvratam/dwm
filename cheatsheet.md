@@ -5,10 +5,10 @@
 # common operations
   Super          Return   *terminal* (`alacritty`)
   Super          q        *quit* (kill focused window)
-  Super   Shift  q        *quit* (kill focused window)
-  Super          d        *show app menu* (`rofi`)
-  Super   Shift  d        *show app menu* (`dmenu`)
-  Super          x        *show archlinux-logout* (lock/suspend/logout/reboot/shutdown)
+  Super   Shift  q        *logout (quit dwm)
+  Super          r        *show app menu* (`rofi`)
+  Super          d        *show app menu* (`dmenu`)
+  Super          x        *show logout* (lock/suspend/logout/reboot/shutdown)
   Super   Shift  r        *reload config files* (`reload`)
   Super          Escape   *kill application*
 
