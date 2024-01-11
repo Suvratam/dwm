@@ -74,11 +74,11 @@ super + c
 
 #Session-logout
 super + x
-    "/home/suvratam/.config/rofi/powermenu/type-1/powermenu.sh"
+    exec "/home/suvratam/.config/rofi/powermenu/type-1/powermenu.sh"
 
 #Rofi theme selector
 super + r
-    "/home/suvratam/.config/rofi/launchers/type-5/launcher.sh"
+    exec "/home/suvratam/.config/rofi/launchers/type-5/launcher.sh"
 
 #xfce4-terminal
 #super + t
@@ -304,7 +304,7 @@ ctrl + shift + Escape
 
 #Scrot
 Print
-    scrot 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'
+    scrot 'UbuntuLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'
 
 #screeenshooter
 ctrl + Print

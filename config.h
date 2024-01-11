@@ -3,7 +3,7 @@
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
-static const unsigned int gappx     = 2;        /* gaps between windows */
+static const unsigned int gappx     = 3;        /* gaps between windows */
 static const unsigned int systraypinning = 1;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayspacing = 3;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
@@ -18,11 +18,11 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const Bool viewontag         = True;     /* Switch view on tag switch */
 
 static const char *fonts[]          = {
-                                  "ComicShannsMono:size=11:antialias=true:autohint=true",
+                                  "ComicShannsMono Nerd Font:pixelsize=14:antialias=true:autohint=true",
                                   "JetBrainsMono:size=11:antialias=true:autohint=true",
 };
 
-static const char dmenufont[]       = "monospace:size=10";
+static const char dmenufont[]       = "ComicShannsMono Nerd Font:size=10";
 
 static const char col_1[]  = "#12151f"; /* background color of bar */
 static const char col_2[]  = "#fc8c03"; /* border color unfocused windows */
@@ -47,7 +47,7 @@ static const unsigned int alphas[][3]      = {
 /* tagging */
 //static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 /* static const char *tags[] = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" }; */
-static const char *tags[] = { "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  "}; 
+static const char *tags[] = { " ", " ", " ", " ", " ", " ", " ", " ", " ", " "}; 
 /* static const char *tags[] = { "Web", "Chat", "Edit", "Meld", "Vb", "Mail", "Video", "Image", "Files" }; */
 
 
@@ -131,7 +131,6 @@ static const char *drec_bright[]    = { "/home/suvratam/.config/dwm/bright", "-"
 #include "selfrestart.c"
 #include "shiftview.c"
 
-
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
@@ -195,8 +194,8 @@ static Key keys[] = {
 	{ MODKEY,		        		XK_Tab,    shiftview,	   {.i =  1 } },
 	{ MODKEY|ShiftMask,		        XK_Tab,	   shiftview,	   {.i = -1 } },
     { MODKEY,                       XK_h,      spawn,          SHCMD("xdotool type $(grep -v '^#' /home/suvratam/.local/share/bookmark | dmenu -i -l 50 | cut -d' ' -f1)") },
-    { ControlMask,                       XK_F3,     spawn,          {.v = inc_bright  } },
-    { ControlMask,                       XK_F2,     spawn,          {.v = drec_bright } },
+    { ControlMask,                  XK_F3,     spawn,          {.v = inc_bright  } },
+    { ControlMask,                  XK_F2,     spawn,          {.v = drec_bright } },
 
 
 	TAGKEYS(                        XK_1,                      0)
@@ -216,8 +215,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[2]} },
 	
     { MODKEY|ShiftMask,             XK_q,	  quit,		      {0} },
-    { MODKEY|ShiftMask,             XK_r,     quit,   {1} },
-    //{ MODKEY|ShiftMask,             XK_r,     self_restart,   {0} },
+    //{ MODKEY|ShiftMask,             XK_r,     quit,           {1} },
+    { MODKEY|ShiftMask,             XK_r,   self_restart,   {0} },
 
 };
 

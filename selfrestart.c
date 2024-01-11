@@ -14,7 +14,7 @@
  */
 char *get_dwm_path(){
     struct stat s;
-    int r, length, rate = 1;
+    int r, length, rate = 42;
     char *path = NULL;
 
     if(lstat("/proc/self/exe", &s) == -1){
