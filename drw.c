@@ -1,4 +1,5 @@
 /* See LICENSE file for copyright and license details. */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -147,11 +148,10 @@ xfont_create(Drw *drw, const char *fontname, FcPattern *fontpattern)
         /*XftFontClose(drw->dpy, xfont);*/
         /*return NULL;*/
     /*}*/
-
     font = ecalloc(1, sizeof(Fnt));
 	font->xfont = xfont;
 	font->pattern = pattern;
-	font->h = xfont->ascent + xfont->descent;
+    font->h = xfont->ascent + xfont->descent;
 	font->dpy = drw->dpy;
 
 	return font;
@@ -416,7 +416,7 @@ drw_text(Drw *drw, int x, int y, unsigned int w, unsigned int h, unsigned int lp
 			fcpattern = FcPatternDuplicate(drw->fonts->pattern);
 			FcPatternAddCharSet(fcpattern, FC_CHARSET, fccharset);
 			FcPatternAddBool(fcpattern, FC_SCALABLE, FcTrue);
-			FcPatternAddBool(fcpattern, FC_COLOR, FcFalse);
+            FcPatternAddBool(fcpattern, FC_COLOR, FcFalse);
 
 			FcConfigSubstitute(NULL, fcpattern, FcMatchPattern);
 			FcDefaultSubstitute(fcpattern);

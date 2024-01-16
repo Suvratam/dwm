@@ -19,10 +19,12 @@ static const Bool viewontag         = True;     /* Switch view on tag switch */
 
 static const char *fonts[]          = {
                                   "ComicShannsMono Nerd Font:pixelsize=14:antialias=true:autohint=true",
-                                  "JetBrainsMono:size=11:antialias=true:autohint=true",
+                                  "JetBrainsMono Nerd Font:pixelsize=14:antialias=true:autohint=true",
+                                  //"Feather:pixelsize=7:antialias=true:autohint=true", 
+                                  //"FontAwesome:pixelsize=14:antialias=true:autohint=true", 
 };
 
-static const char dmenufont[]       = "ComicShannsMono Nerd Font:size=10";
+static const char dmenufont[]       = {"ComicShannsMono Nerd Font:size=10"};
 
 static const char col_1[]  = "#12151f"; /* background color of bar */
 static const char col_2[]  = "#fc8c03"; /* border color unfocused windows */
@@ -47,7 +49,7 @@ static const unsigned int alphas[][3]      = {
 /* tagging */
 //static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 /* static const char *tags[] = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" }; */
-static const char *tags[] = { " ", " ", " ", " ", " ", " ", " ", " ", " ", " "}; 
+static const char *tags[] = { " ", " ", " ", " ", " ", " ", " ", " ", " " , " "}; 
 /* static const char *tags[] = { "Web", "Chat", "Edit", "Meld", "Vb", "Mail", "Video", "Image", "Files" }; */
 
 
@@ -119,11 +121,10 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[]    = { "dmenu_run", "-g", "10", "-l", "48", "-p", "Run: ", NULL };
-static const char *filecmd[]    = { "thunar", NULL };
+static const char *filecmd[]    = { "nautilus", NULL };
 /* the st terminal with tabbed */
 static const char *termcmd[]     = { "alacritty", NULL };
-static const char *calendar[]  = { "gsimplecal", NULL };
-static const char *taskmanager[]  = { "xfce4-taskmanager", NULL };
+
 //static const char *bookmark[]    = { "/home/suvratam/.config/dwm/BookmarkList", NULL };
 static const char *inc_bright[]    = { "/home/suvratam/.config/dwm/bright", "+", NULL };
 static const char *drec_bright[]    = { "/home/suvratam/.config/dwm/bright", "-", NULL };
@@ -134,6 +135,7 @@ static const char *drec_bright[]    = { "/home/suvratam/.config/dwm/bright", "-"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_e,      spawn,          {.v = filecmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -216,8 +218,7 @@ static Key keys[] = {
 	
     { MODKEY|ShiftMask,             XK_q,	  quit,		      {0} },
     //{ MODKEY|ShiftMask,             XK_r,     quit,           {1} },
-    { MODKEY|ShiftMask,             XK_r,   self_restart,   {0} },
-
+    { MODKEY|ShiftMask,             XK_r,    self_restart,   {0} },
 };
 
 /* IF YOU HAVE A AZERTY KEYBOARD USE THESE CODES

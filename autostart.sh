@@ -7,8 +7,10 @@ function run {
 }
 
 #slstatus &
+#export LANG=en_US.utf-8
 xset -dpms &
 xset s off &
+
 run "nm-applet 2>&1 > /dev/null"
 run "pasystray"
 run "blueman-applet"
@@ -22,11 +24,11 @@ run "numlockx on"
 #run "volumeicon"
 #run "dex $HOME/.config/autostart/*.desktop"
 run "$HOME/.config/slstatus/slstatus"
-dunst -conf ~/.config/dunst/dunstrc &
+#dunst -conf ~/.config/dunst/dunstrc &
 # run "blueberry-tray"
 # run "/usr/bin/notify-send"
 # run "/usr/lib/xfce4/notifyd/xfce4-notifyd"
-run "/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1"
+#run "/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1"
 sxhkd -c ~/.config/dwm/sxhkd/sxhkdrc &
 picom --experimental-backends -b --config ~/.config/dwm/picom.conf &
 feh --randomize --bg-fill ~/.config/dwm/Wallpaper/* &
@@ -37,8 +39,6 @@ feh --randomize --bg-fill ~/.config/dwm/Wallpaper/* &
  #do
 #done
 
-
-#run ~/.config/dwm/slstatus/slstatus & 
 #run "nitrogen --restore"
 #run "conky -c $HOME/.config/dwm/system-overview"
 #you can set wallpapers in themes as well
