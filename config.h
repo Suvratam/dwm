@@ -121,15 +121,16 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[]    = { "dmenu_run", "-g", "10", "-l", "48", "-p", "Run: ", NULL };
-static const char *filecmd[]    = { "nautilus", NULL };
+static const char *filecmd[]     = { "pcmanfm", NULL };
+static const char *taskmanager[] = { "xfce4-taskmanager", NULL };
+static const char *calendar[]    = { "calendar", NULL };
 /* the st terminal with tabbed */
 static const char *termcmd[]     = { "alacritty", NULL };
 
-static const char *calendar[]  = { "gsimplecal", NULL };
 //static const char *bookmark[]    = { "/home/suvratam/.config/dwm/BookmarkList", NULL };
 static const char *inc_bright[]    = { "/home/suvratam/.config/dwm/bright", "+", NULL };
-static const char *drec_bright[]    = { "/home/suvratam/.config/dwm/bright", "-", NULL };
-
+static const char *drec_bright[]   = { "/home/suvratam/.config/dwm/bright", "-", NULL };
+static const char *screenshot[]    = { "/home/suvratam/.config/dwm/scripts/scrot", NULL};
 #include "selfrestart.c"
 #include "shiftview.c"
 
@@ -137,6 +138,7 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_e,      spawn,          {.v = filecmd } },
+	{ 0,                            XK_Print,  spawn,          {.v = screenshot } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -219,7 +221,7 @@ static Key keys[] = {
 	
     { MODKEY|ShiftMask,             XK_q,	  quit,		      {0} },
     //{ MODKEY|ShiftMask,             XK_r,     quit,           {1} },
-    { MODKEY|ShiftMask,             XK_r,    self_restart,   {0} },
+    { MODKEY|ShiftMask,             XK_r,    self_restart,    {0} },
 };
 
 /* IF YOU HAVE A AZERTY KEYBOARD USE THESE CODES
@@ -253,9 +255,9 @@ static Button buttons[] = {
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-	{ ClkStatusText,        0,              Button1,        spawn,          {.v = taskmanager } },
-	{ ClkStatusText,        0,              Button2,        spawn,          {.v = filecmd } },
-	{ ClkStatusText,        0,              Button3,        spawn,          {.v = calendar } },
+    { ClkStatusText,        0,              Button1,        spawn,          {.v = taskmanager } },
+    { ClkStatusText,        0,              Button2,        spawn,          {.v = filecmd } },
+    { ClkStatusText,        0,              Button3,        spawn,          {.v = calendar } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
