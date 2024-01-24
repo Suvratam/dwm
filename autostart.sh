@@ -8,10 +8,10 @@ function run {
 
 #slstatus &
 #export LANG=en_US.utf-8
-xset -dpms &
-xset s off &
+#xset -dpms &
+#xset s off &
 
-run "nm-applet 2>&1 > /dev/null"
+run "nm-applet" #2>&1 > /dev/null"
 run "pasystray"
 run "blueman-applet"
 run "barrier"
@@ -31,7 +31,7 @@ run "$HOME/.config/slstatus/slstatus"
 #run "/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1"
 sxhkd -c ~/.config/dwm/sxhkd/sxhkdrc &
 picom --experimental-backends -b --config ~/.config/dwm/picom.conf &
-feh --randomize --bg-fill ~/.config/dwm/Wallpaper/* &
+feh --randomize --bg-scale ~/.config/dwm/Wallpaper/* &
 # xargs xwallpaper --stretch < ~/.config/dwm/Wallpaper &
 # eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
 
