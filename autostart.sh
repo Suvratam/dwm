@@ -6,7 +6,8 @@ function run {
   fi
 }
 
-#slstatus &
+slstatus &
+#dwmblocks &
 #export LANG=en_US.utf-8
 xset -dpms &
 xset s off &
@@ -23,7 +24,7 @@ run "numlockx on"
 # run "pamac-tray"
 #run "volumeicon"
 #run "dex $HOME/.config/autostart/*.desktop"
-run "$HOME/.config/slstatus/slstatus"
+#run "$HOME/.config/slstatus/slstatus"
 #dunst -conf ~/.config/dunst/dunstrc &
 # run "blueberry-tray"
 # run "/usr/bin/notify-send"
