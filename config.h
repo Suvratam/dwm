@@ -49,7 +49,7 @@ static const unsigned int alphas[][3]      = {
 /* tagging */
 //static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 /* static const char *tags[] = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" }; */
-static const char *tags[] = { " ", " ", " ", " ", " ", " ", " ", " ", " " , " "}; 
+static const char *tags[] = { " ", " ", " ", " ", " ", " ", " ", " ", " " , " "};
 /* static const char *tags[] = { "Web", "Chat", "Edit", "Meld", "Vb", "Mail", "Video", "Image", "Files" }; */
 
 
@@ -91,18 +91,17 @@ static const Layout layouts[] = {
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
-	{ "[@]",      spiral },
-	{ "[\\]",     dwindle },
-	{ "H[]",      deck },
-	{ "TTT",      bstack },
-	{ "===",      bstackhoriz },
-	{ "HHH",      grid },
-	{ "###",      nrowgrid },
-	{ "---",      horizgrid },
-	{ ":::",      gaplessgrid },
-	{ "|M|",      centeredmaster },
+	//{ "[@]",      spiral },
+	//{ "[\\]",     dwindle },
+	//{ "H[]",      deck },
+	//{ "TTT",      bstack },
+	//{ "===",      bstackhoriz },
+	//{ "HHH",      grid },
+	//{ "###",      nrowgrid },
+	//{ "---",      horizgrid },
+	//{ ":::",      gaplessgrid },
+	//{ "|M|",      centeredmaster },
 	{ ">M>",      centeredfloatingmaster },
-	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ NULL,       NULL },
 };
 
@@ -122,14 +121,12 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[]    = { "dmenu_run", "-g", "10", "-l", "48", "-p", "Run: ", NULL };
 static const char *filecmd[]     = { "pcmanfm", NULL };
-static const char *taskmanager[] = { "xfce4-taskmanager", NULL };
-static const char *calendar[]    = { "calendar", NULL };
 /* the st terminal with tabbed */
 static const char *termcmd[]     = { "alacritty", NULL };
 
 //static const char *bookmark[]    = { "/home/suvratam/.config/dwm/BookmarkList", NULL };
-static const char *inc_bright[]    = { "/home/suvratam/.config/dwm/bright", "+", NULL };
-static const char *drec_bright[]   = { "/home/suvratam/.config/dwm/bright", "-", NULL };
+static const char *inc_bright[]    = { "/home/suvratam/.config/dwm/scripts/bright", "+", NULL };
+static const char *drec_bright[]    = { "/home/suvratam/.config/dwm/scripts/bright", "-", NULL };
 static const char *screenshot[]    = { "/home/suvratam/.config/dwm/scripts/scrot", NULL};
 #include "selfrestart.c"
 #include "shiftview.c"
@@ -138,9 +135,9 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_e,      spawn,          {.v = filecmd } },
-	{ 0,                            XK_Print,  spawn,          {.v = screenshot } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
+    { 0,                            XK_Print,  spawn,          {.v = screenshot } },
+    { MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
     { MODKEY,                       XK_Right,  focusstack,     {.i = +1 } },
@@ -221,7 +218,7 @@ static Key keys[] = {
 	
     { MODKEY|ShiftMask,             XK_q,	  quit,		      {0} },
     //{ MODKEY|ShiftMask,             XK_r,     quit,           {1} },
-    { MODKEY|ShiftMask,             XK_r,    self_restart,    {0} },
+    { MODKEY|ShiftMask,             XK_r,    self_restart,   {0} },
 };
 
 /* IF YOU HAVE A AZERTY KEYBOARD USE THESE CODES
@@ -255,9 +252,9 @@ static Button buttons[] = {
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-    { ClkStatusText,        0,              Button1,        spawn,          {.v = taskmanager } },
-    { ClkStatusText,        0,              Button2,        spawn,          {.v = filecmd } },
-    { ClkStatusText,        0,              Button3,        spawn,          {.v = calendar } },
+	//{ ClkStatusText,        0,              Button1,        spawn,          {.v = taskmanager } },
+	{ ClkStatusText,        0,              Button2,        spawn,          {.v = filecmd } },
+	//{ ClkStatusText,        0,              Button3,        spawn,          {.v = calendar } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
