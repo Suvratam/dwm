@@ -6,7 +6,6 @@ function run {
   fi
 }
 
-slstatus &
 #dwmblocks &
 #export LANG=en_US.utf-8
 xset -dpms &
@@ -32,7 +31,8 @@ run "numlockx on"
 #run "/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1"
 sxhkd -c ~/.config/dwm/sxhkd/sxhkdrc &
 picom --experimental-backends -b --config ~/.config/dwm/picom.conf &
-feh --randomize --bg-scale ~/.config/dwm/Wallpaper/* &
+feh --randomize --bg-fill ~/.config/dwm/Wallpaper/* &
+slstatus &
 # xargs xwallpaper --stretch < ~/.config/dwm/Wallpaper &
 # eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
 

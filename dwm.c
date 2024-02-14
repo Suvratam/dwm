@@ -53,8 +53,10 @@
 #define ISVISIBLE(C)            ((C->tags & C->mon->tagset[C->mon->seltags]))
 #define LENGTH(X)               (sizeof X / sizeof X[0])
 #define MOUSEMASK               (BUTTONMASK|PointerMotionMask)
-#define WIDTH(X)                ((X)->w + 2 * (X)->bw + gappx)
-#define HEIGHT(X)               ((X)->h + 2 * (X)->bw + gappx)
+/*#define WIDTH(X)                ((X)->w + 2 * (X)->bw + gappx)*/
+/*#define HEIGHT(X)               ((X)->h + 2 * (X)->bw + gappx)*/
+#define WIDTH(X)                ((X)->w + 2 * (X)->bw)
+#define HEIGHT(X)               ((X)->h + 2 * (X)->bw)
 #define TAGMASK                 ((1 << LENGTH(tags)) - 1)
 #define TEXTW(X)                (drw_fontset_getwidth(drw, (X)) + lrpad)
 #define OPAQUE                  0xffU
@@ -86,8 +88,10 @@ enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
        NetWMWindowTypeDialog, NetClientList, NetLast }; /* EWMH atoms */
 enum { Manager, Xembed, XembedInfo, XLast }; /* Xembed atoms */
 enum { WMProtocols, WMDelete, WMState, WMTakeFocus, WMLast }; /* default atoms */
-enum { ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle,
-       ClkClientWin, ClkRootWin, ClkLast }; /* clicks */
+enum { ClkTagBar, ClkLtSymbol, ClkStatusText, ClkButton, ClkWinTitle,
+        ClkClientWin, ClkRootWin, ClkLast }; /* clicks */
+/*enum { ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle,*/
+       /*ClkClientWin, ClkRootWin, ClkLast }; [> clicks <]*/
 
 typedef union {
 	int i;
@@ -173,6 +177,7 @@ struct Systray {
 	Window win;
 	Client *icons;
 };
+
 
 /* function declarations */
 static void applyrules(Client *c);
@@ -494,18 +499,35 @@ buttonpress(XEvent *e)
 	}
 	if (ev->window == selmon->barwin) {
 		i = x = 0;
-		do
-			x += TEXTW(tags[i]);
-		while (ev->x >= x && ++i < LENGTH(tags));
-		if (i < LENGTH(tags)) {
-			click = ClkTagBar;
-			arg.ui = 1 << i;
-		} else if (ev->x < x + blw)
-			click = ClkLtSymbol;
-		else if (ev->x > selmon->ww - TEXTW(stext) - getsystraywidth())
-			click = ClkStatusText;
-		else
-			click = ClkWinTitle;
+		/*do*/
+			/*x += TEXTW(tags[i]);*/
+		/*while (ev->x >= x && ++i < LENGTH(tags));*/
+		/*if (i < LENGTH(tags)) {*/
+			/*click = ClkTagBar;*/
+			/*arg.ui = 1 << i;*/
+		/*} else if (ev->x < x + blw)*/
+			/*click = ClkLtSymbol;*/
+		/*else if (ev->x > selmon->ww - TEXTW(stext) - getsystraywidth())*/
+			/*click = ClkStatusText;*/
+		/*else*/
+			/*click = ClkWinTitle;*/
+        x += TEXTW(buttonbar);
+		if(ev->x < x) {
+			click = ClkButton;
+		} else {
+			do
+				x += TEXTW(tags[i]);
+			while (ev->x >= x && ++i < LENGTH(tags));
+			if (i < LENGTH(tags)) {
+				click = ClkTagBar;
+				arg.ui = 1 << i;
+			} else if (ev->x < x + blw)
+				click = ClkLtSymbol;
+            else if (ev->x > selmon->ww - TEXTW(stext))
+                click = ClkStatusText;
+		 else
+				click = ClkWinTitle;
+		}
 	} else if ((c = wintoclient(ev->window))) {
 		focus(c);
 		restack(selmon);
@@ -966,11 +988,16 @@ drawbar(Monitor *m)
 			urg |= c->tags;
 	}
 	x = 0;
+    w = blw = TEXTW(buttonbar);
+	drw_setscheme(drw, scheme[SchemeNorm]);
+	x = drw_text(drw, x, 0, w, bh, lrpad / 2, buttonbar, 0);
 	for (i = 0; i < LENGTH(tags); i++) {
 		w = TEXTW(tags[i]);
-		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeSel : SchemeNorm]);
-		drw_text(drw, x, 0, w, bh, lrpad / 2, tags[i], urg & 1 << i);
-		if (occ & 1 << i)
+        drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeSel : SchemeNorm]);
+        drw_text(drw, x, 0, w, bh, lrpad / 2, tags[i], urg & 1 << i);
+		if (ulineall || m->tagset[m->seltags] & 1 << i) /* if there are conflicts, just move these lines directly underneath both 'drw_setscheme' and 'drw_text' :) */
+			drw_rect(drw, x + ulinepad, bh - ulinestroke - ulinevoffset, w - (ulinepad * 2), ulinestroke, 1, 0);
+        if (occ & 1 << i)
 			drw_rect(drw, x + boxs, boxs, boxw, boxw,
 				m == selmon && selmon->sel && selmon->sel->tags & 1 << i,
 				urg & 1 << i);
@@ -2086,11 +2113,11 @@ setup(void)
 	cursor[CurResize] = drw_cur_create(drw, XC_sizing);
 	cursor[CurMove] = drw_cur_create(drw, XC_fleur);
 	/* init appearance */
-	scheme = ecalloc(LENGTH(colors) + 1, sizeof(Clr *));
+    scheme = ecalloc(LENGTH(colors) + 1, sizeof(Clr *));
 	scheme[LENGTH(colors)] = s2d_drw_scm_create(drw, colors[0], 3);
 	for (i = 0; i < LENGTH(colors); i++)
 		scheme[i] = drw_scm_create(drw, colors[i], alphas[i], 3);
-	/* init system tray */
+    /* init system tray */
 	updatesystray();
 	/* init bars */
 	updatebars();
@@ -2618,6 +2645,8 @@ updatesystray(void)
 
 	if (!showsystray)
 		return;
+    if (systrayonleft)
+		x -= sw + lrpad / 2;
 	if (!systray) {
 		/* init systray */
 		if (!(systray = (Systray *)calloc(1, sizeof(Systray))))
