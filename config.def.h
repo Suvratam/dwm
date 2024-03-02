@@ -3,12 +3,13 @@
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
+static const char panel[][20]       = { "xfce4-panel", "Xfce4-panel" }; /* name & cls of panel win */
 static const unsigned int gappx     = 3;        /* gaps between windows */
 static const unsigned int systraypinning = 1;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayonleft =  0;
 static const unsigned int systrayspacing = 3;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
-static const int showsystray        = 1;     /* 0 means no systray */
+static const int showsystray        = 0;     /* 0 means no systray */
 static const unsigned int gappih    = 15;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 15;       /* vert inner gap between windows */
 static const unsigned int gappoh    = 15;       /* horiz outer gap between windows and screen edge */
@@ -65,7 +66,8 @@ static const Rule rules[] = {
 	 *  use tags mask to point an application to a specific workspace
 	 */
 	/* class                       instance    title      tags mask      isfloating   monitor */
-	{ "Gimp",                      NULL,       NULL,       0,            0,           -1 },
+	{ panel[1],                    NULL,       NULL,       (1 << 9) - 1, 1,           -1 },
+    { "Gimp",                      NULL,       NULL,       0,            0,           -1 },
 	{ "Blueman-manager",           NULL,       NULL,       0,            1,           -1 },
 	{ "Pavucontrol",               NULL,       NULL,       0,            1,           -1 },
 	{ "firefox",                   NULL,       NULL,       0,            0,           -1 },
@@ -135,7 +137,7 @@ static const char *calendar[]  = { "gsimplecal", NULL };
 //static const char *bookmark[]    = { "/home/suvratam/.config/dwm/BookmarkList", NULL };
 static const char *inc_bright[]    = { "/home/suvratam/.config/dwm/scripts/bright", "+", NULL };
 static const char *drec_bright[]    = { "/home/suvratam/.config/dwm/scripts/bright", "-", NULL };
-static const char *screenshot[]    = { "/home/suvratam/.config/dwm/scripts/scrot", NULL};
+static const char *screenshot[]    = { "/home/suvratam/.config/dwm/scripts/scroti.sh", NULL};
 
 #include "selfrestart.c"
 #include "shiftview.c"
