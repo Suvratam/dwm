@@ -129,7 +129,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[]    = { "dmenu_run", "-g", "10", "-l", "48", "-p", "Run: ", NULL };
 static const char *filecmd[]     = { "pcmanfm", NULL };
-static const char *launcher[]     = { "$HOME/.config/dwm/launcher/launcher.sh", NULL };
+static const char *launcher[]     = { "/home/suvratam/.config/dwm/launcher/launcher.sh", NULL };
 /* the st terminal with tabbed */
 static const char *termcmd[]     = { "alacritty", NULL };
 static const char *taskmanager[]  = { "gnome-system-monitor", NULL };
