@@ -12,7 +12,7 @@ slstatus &
 #xset -dpms &
 #xset s off &
 
-run "nm-applet 2>&1 > /dev/null"
+run "nm-applet"
 #run "pasystray"
 run "blueman-applet"
 run "barrier"
