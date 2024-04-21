@@ -33,7 +33,7 @@ run "numlockx on"
 sxhkd -c ~/.config/dwm/sxhkd/sxhkdrc &
 picom --experimental-backends -b --config ~/.config/dwm/picom.conf &
 feh --randomize --bg-fill ~/.config/dwm/Wallpaper/* &
-sleep 0.3
+#sleep 0.3
 xfce4-panel --disable-wm-check
 # xargs xwallpaper --stretch < ~/.config/dwm/Wallpaper &
 # eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
